@@ -28,7 +28,11 @@ How-To
 .. code-block:: bash
 
     $ ./backup.sh MYBEARERTOKEN
+    Processing 1/447: {'id': 'Y2lzY29....', 'title': 'Daily Meeting Room', 'type': 'direct', 'isLocked': False, 'lastActivity': '2021-04-20T11:32:36.567Z', 'creatorId': 'Y2lzY29....', 'created': '2021-04-20T11:23:01.055Z', 'ownerId': 'Y2lzY29....'}
+    Processing 2/447: {'id': 'Y2lzY29....', 'title': 'Upgrade WarRoom', 'type': 'group', 'isLocked': False, 'lastActivity': '2021-04-20T08:09:14.276Z', 'teamId': 'Y2lzY29....', 'creatorId': 'Y2lzY29....', 'created': '2021-04-20T08:08:49.388Z', 'ownerId': 'Y2lzY29....'}
 
+It iterates now through all my channels and private communiations (447 in total in my case) and prints a line for each.
+After this you have a folder (and a packed gz file) for each communication with a nice html file. 
 
 Note: Please note that use of the Webex Teams Archiver may violate the retention policy, if any, applicable to your use of Webex Teams.
 
