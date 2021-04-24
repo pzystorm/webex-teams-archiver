@@ -99,16 +99,16 @@ class WebexTeamsArchiver:
             filename_re = re.search(r"filename=\"(.+?)\"",
                                     r.headers.get("Content-Disposition", ""), re.I)
 
-            if not filename_re:
-                message = (
-                    f"Failed to find filename='' in {r.headers.get('Content-Disposition', '')} for url {url}"
-                )
-                raise MalformedResponse(message)
+            attachmentid = re.sub(r'^.+/([^/]+)$', r'\1', url)
+
+            originalfilename = ""
+            if filename_re:
+                originalfilename = filename_re.group(1)
 
             return File(r.headers.get("Content-Disposition", ""),
                         r.headers.get("Content-Length", 0),
                         r.headers.get("Content-Type", ""),
-                        sanitize_name(filename_re.group(1)),
+                        sanitize_name(attachmentid + "_" + originalfilename),
                         False)
         else:
             return File("", 0, "", "UNKNOWN", True)
