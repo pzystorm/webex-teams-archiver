@@ -13,8 +13,7 @@ Webex Teams Archiver
 
 -------------------------------------------------------------------------------
 
-This version of the Webex Teams Archiver extracts *all*  messages of one
-user and saves them in text, HTML, and JSON formats.
+This version of the Webex Teams Archiver extracts **all** messages of one user and saves them in text, HTML, and JSON formats.
 
 How-To
 ------
@@ -34,7 +33,15 @@ How-To
 It iterates now through all the channels and private communications (447 in total in my case) and prints a line for each.
 After this you have a folder (and a packed gz file) for each communication with a nice html file. 
 
-Note: Please note that use of the Webex Teams Archiver may violate the retention policy, if any, applicable to your use of Webex Teams.
+Note 1: Please note that use of the Webex Teams Archiver may violate the retention policy, if any, applicable to your use of Webex Teams.
+
+Note 2: If you have more than 1000 communications the script is not yet able to handle it. So there is currently a maximum for 1000.
+
+Note 3: The Webex API gives no possibility to get/log/backup:
+* Smileys as reactions on messages (e.g. thumbs up)
+* Information on meetings (f.ex. meetings started but noone was there or the duration of finished meetings)
+
+Note 4: Just to give you a rough estimation about sizes: The backup of all 447 channels in my case has a size of 7GB (all files, uncompressed and compressed ones counted together).
 
 
 Questions, Support & Discussion
