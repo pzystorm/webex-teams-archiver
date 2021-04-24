@@ -23,8 +23,7 @@ How-To
 * Login
 * After you are logged in and back on the page mentioned above you see in the right middle of that the field ``Bearer ****************************``
 * Click the copy icon on the right side of that field to copy the Bearer token and click OK for the question in the message box
-* For the next steps you need a Linux shell. Checkout the whole repository
-and execute the backup.sh (replace MYBEARERTOKEN in the next step with the token you have in your clipboard):
+* For the next steps you need a Linux shell. Checkout the whole repository and execute the backup.sh (replace MYBEARERTOKEN in the next step with the token you have in your clipboard):
 
 .. code-block:: bash
 
