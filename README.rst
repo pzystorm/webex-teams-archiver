@@ -13,102 +13,28 @@ Webex Teams Archiver
 
 -------------------------------------------------------------------------------
 
-Webex Teams Archiver extracts the messages and files out of a Webex Teams room and saves them in text, HTML, and JSON formats.
+This version of the Webex Teams Archiver extracts *all*  messages of one
+user and saves them in text, HTML, and JSON formats.
 
-Example
--------
+How-To
+------
 
-.. code-block:: python
-
-    from webexteamsarchiver import WebexTeamsArchiver
-
-    personal_token = "mytoken"
-    archiver = WebexTeamsArchiver(personal_token)
-    
-    # room id from https://developer.webex.com/docs/api/v1/rooms/list-rooms
-    room_id = "Y2lzY29zcGFyazovL3VzL1JPT00vd2ViZXh0ZWFtc2FyY2hpdmVy"
-    archiver.archive_room(room_id)
-    
-Produces the following files:
+* Go to https://developer.webex.com/docs/api/v1/teams/list-teams
+* Login
+* After you are logged in and back on the page mentioned above you see in the right middle of
+that the field "Bearer ****************************"
+* Click the copy icon on the right side of that field to copy the Bearer
+token and click OK for the question in the message box
+* Next steps need a Linux shell (replace MYBEARERTOKEN in the next step with
+the token you have in your clipboard):
 
 .. code-block:: bash
 
-    $ ls 
-    Title_Timestamp.tgz
-    Title_Timestamp
-
-    $ ls Title_Timestamp/
-    Title_Timestamp.html
-    Title_Timestamp.json
-    Title_Timestamp.txt
-    attachments/
-    avatars/
-    space_details.json
-
-Below is an example of a simple room that got archived.
-
-.. image:: https://raw.githubusercontent.com/CiscoDevNet/webex-teams-archiver/master/sample.png
-   :scale: 40 %
+    $ ./backup.sh MYBEARERTOKEN
 
 
-Note 1: The HTML version of the archive requires Internet connectivity because of the CSS, which is not packaged with the archive because of licensing conflicts.
+Note: Please note that use of the Webex Teams Archiver may violate the retention policy, if any, applicable to your use of Webex Teams.
 
-Note 2: Please note that use of the Webex Teams Archiver may violate the retention policy, if any, applicable to your use of Webex Teams.
-
-Installation
-------------
-
-Installing and upgrading is easy:
-
-**Install via PIP**
-
-.. code-block:: bash
-
-    $ pip install webexteamsarchiver
-
-**Upgrading to the latest Version**
-
-.. code-block:: bash
-
-    $ pip install webexteamsarchiver --upgrade
-
-Options
--------
-
-The `archive_room` method exposes the following options:
-
-+----------------------+-------------------+---------------------------------------------------+ 
-| Argument             | Default Value     | Description                                       | 
-+======================+===================+===================================================+
-| text_format          | True              | Create a text version of the archive              |
-+----------------------+-------------------+---------------------------------------------------+
-| html_format          | True              | Create an HTML version of the archive             |
-+----------------------+-------------------+---------------------------------------------------+
-| json_format          | True              | Create a JSON version of the archive              |
-+----------------------+-------------------+---------------------------------------------------+
-
-
-In addition, the `options` kwargs supports the following additional options today:
-
-+----------------------+-------------------+---------------------------------------------------+ 
-| Argument             | Default Value     | Description                                       | 
-+======================+===================+===================================================+
-| compress_folder      | True              | Compress archive folder                           |
-+----------------------+-------------------+---------------------------------------------------+
-| delete_folder        | False             | Delete the archive folder when done               |
-+----------------------+-------------------+---------------------------------------------------+
-| reverse_order        | True              | Order messages by most recent on the bottom       |
-+----------------------+-------------------+---------------------------------------------------+
-| download_attachments | True              | Download attachments sent to the room             |
-+----------------------+-------------------+---------------------------------------------------+
-| download_avatars     | True              | Download avatar images                            |
-+----------------------+-------------------+---------------------------------------------------+
-| download_workers     | 15                | Number of download workers for downloading files  |
-+----------------------+-------------------+---------------------------------------------------+
-| timestamp_format     | %Y-%m-%dT%H:%M:%S | Timestamp strftime format                         |
-+----------------------+-------------------+---------------------------------------------------+
-| file_format          | gztar             | Archive file format_                              |
-+----------------------+-------------------+---------------------------------------------------+
 
 Questions, Support & Discussion
 -------------------------------
