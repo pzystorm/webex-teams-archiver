@@ -38,14 +38,14 @@ After this you have a folder (and a packed gz file) for each communication with 
 
 **Note 1:** Please note that use of the Webex Teams Archiver may violate the retention policy, if any, applicable to your use of Webex Teams.
 
-**Note 2:** If you have more than 1000 communications the script is not yet able to handle it. So there is currently a maximum for 1000.
+**Note 2:** If you have more than 1000 communications (e.g. rooms, direct 1:1 chats, etc.) the script is not yet able to handle it. So there is currently a maximum for 1000.
 
 **Note 3:** The Webex API gives no possibility to get/log/backup:
 
 * Smileys as reactions on messages (e.g. thumbs up)
 * Information on meetings (f.ex. meetings started but noone was there or the duration of finished meetings)
 
-**Note 4:** Just to give you a rough estimation about sizes: The backup of all 447 channels in my case has a size of 7GB (all files, uncompressed and compressed ones counted together).
+**Note 4:** Just to give you a rough estimation about size and duration: The backup of all 447 communications in my case has a size of 7.5GB (all files, uncompressed and compressed ones counted together) and took 4 hours.
 
 **Note 5:** Sometimes you get a throttle message like "RateLimitWarning: [429] Too Many Requests - The user has sent too many requests in a given amount of time...". This can be ignored. There is already a sleep/retry procedure in there. So there is NO data loss / incomplete backup in this case.
 
