@@ -17,6 +17,7 @@ if r.status_code != 200:
 if "items" not in r.json():
   print("ERROR! No items (channels) in response")
   sys.exit(1)
+
 total=len(r.json()['items']);
 i=0
 for room in r.json()['items']:

@@ -26,6 +26,7 @@ import shutil
 import logging
 import json
 import datetime
+import time
 from collections import namedtuple
 from webexteamssdk import WebexTeamsAPI
 from webexteamssdk.exceptions import MalformedResponse, ApiError
@@ -103,12 +104,12 @@ class WebexTeamsArchiver:
 
             originalfilename = ""
             if filename_re:
-                originalfilename = filename_re.group(1)
+                originalfilename = "_" + filename_re.group(1)
 
             return File(r.headers.get("Content-Disposition", ""),
                         r.headers.get("Content-Length", 0),
                         r.headers.get("Content-Type", ""),
-                        sanitize_name(attachmentid + "_" + originalfilename),
+                        sanitize_name(attachmentid + originalfilename),
                         False)
         else:
             return File("", 0, "", "UNKNOWN", True)
@@ -155,7 +156,7 @@ class WebexTeamsArchiver:
         reverse_order = options.get("reverse_order", True)
         download_attachments = options.get("download_attachments", True)
         download_avatars = options.get("download_avatars", True)
-        download_workers = options.get("download_workers", 15)
+        download_workers = options.get("download_workers", 10)
         timestamp_format = options.get("timestamp_format", "%Y-%m-%dT%H:%M:%S")
         file_format = options.get("file_format", "gztar")
 
@@ -418,9 +419,15 @@ class WebexTeamsArchiver:
 
         # https://stackoverflow.com/questions/16694907/how-to-download-
         # large-file-in-python-with-requests-py
-        with requests.get(url, headers=headers, stream=True) as r:
-            with open(os.path.join(os.getcwd(), self.archive_folder_name, folder_name, f"{filename}"), "wb") as f:
-                shutil.copyfileobj(r.raw, f)
+        for i in range(5):
+            with requests.get(url, headers=headers, stream=True) as r:
+                with open(os.path.join(os.getcwd(), self.archive_folder_name, folder_name, f"{filename}"), "wb") as f:
+                    if r.status_code == 429:
+                        time.sleep(int(r.headers["Retry-After"])+2)
+                        continue
+                    else:
+                        shutil.copyfileobj(r.raw, f)
+                        return
 
     def _compress_folder(self, file_format: str) -> str:
         """Compress `archive_folder_name` folder with the format defined by file_format param"""
