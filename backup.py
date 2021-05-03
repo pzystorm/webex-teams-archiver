@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from webexteamsarchiver2 import WebexTeamsArchiver
+from webexteamsarchiver2.webexteamsarchiver import WebexTeamsArchiver
 import sys
 import requests
 

@@ -77,7 +77,7 @@ env = jinja2.Environment(
     trim_blocks=True,
     lstrip_blocks=True,
     keep_trailing_newline=True,
-    loader=jinja2.PackageLoader('webexteamsarchiver', 'templates')
+    loader=jinja2.PackageLoader('webexteamsarchiver2', 'templates')
 )
 
 env.filters['filesize_format'] = filesize_format

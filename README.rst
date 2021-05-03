@@ -24,6 +24,7 @@ How-To
 * Click the copy icon on the right side of that field to copy the Bearer token and click OK for the question in the message box
 * For the next steps you need a Linux shell and Python 3. 
 * Install the webexteamssdk via pip (``pip install webexteamssdk``)
+* Install hurry.filesize via pip (``pip install hurry.filesize``)
 * Checkout the whole repository and execute the backup.py script (replace MYBEARERTOKEN in the next step with the token you have in your clipboard):
 
 .. code-block:: bash
